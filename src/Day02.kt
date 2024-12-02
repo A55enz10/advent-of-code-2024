@@ -3,9 +3,7 @@ import kotlin.math.abs
 fun main() {
 
     fun part1(input: List<String>): Int {
-        return input.count {
-            it -> it.isSafe()
-        }
+        return input.count {it.isSafe()}
     }
 
     fun part2(input: List<String>): Int {
@@ -18,8 +16,8 @@ fun main() {
 }
 
 fun String.isSafe(): Boolean {
-    var elements = this.split(" ").map{it.toInt()}
-    return elements.filterIndexed { i, it ->
-        i < elements.size - 1 && (!(abs(elements[i]-elements[i+1]) in 1..3) || ((elements[0] > elements[1]) && elements[i] < elements[i + 1] || !(elements[0] > elements[1]) && elements[i] > elements[i + 1]))
+    val elements = this.split(" ").map{it.toInt()}
+    return elements.filterIndexed { i, _ ->
+        i < elements.size - 1 && (abs(elements[i]-elements[i+1]) !in 1..3 || (elements[0] > elements[1] && elements[i] < elements[i + 1] || elements[0] < elements[1] && elements[i] > elements[i + 1]))
     }.isEmpty()
 }
