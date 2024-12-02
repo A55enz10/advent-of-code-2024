@@ -2,30 +2,43 @@ fun main() {
 
     fun part1(input: List<String>): Int {
 
-        var list1 = mutableListOf<Int>()
-        var list2 = mutableListOf<Int>()
+        val list1 = mutableListOf<Int>()
+        val list2 = mutableListOf<Int>()
 
 
-        input.forEach{it ->
-            var entries = it.split("   ")
-            list1.add(entries[0].toInt())
-            list2.add(entries[1].toInt())
+        input.forEach{
+            list1.add(it.split("   ")[0].toInt())
+            list2.add(it.split("   ")[1].toInt())
         }
 
         list1.sort()
         list2.sort()
 
-
         var totalDistance = 0;
         list1.forEachIndexed{i, it ->
-            totalDistance += Math.abs(list1[i] - list2[i])
+            totalDistance += Math.abs(it - list2[i])
         }
 
         return totalDistance
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+
+        val list1 = mutableListOf<Int>()
+        val list2 = mutableListOf<Int>()
+
+
+        input.forEach{
+            list1.add(it.split("   ")[0].toInt())
+            list2.add(it.split("   ")[1].toInt())
+        }
+
+        var totalDistance = 0;
+        list1.forEach{it ->
+            totalDistance += it * list2.count { item -> item == it }
+        }
+
+        return totalDistance
     }
 
     val input = readInput("Day01")
