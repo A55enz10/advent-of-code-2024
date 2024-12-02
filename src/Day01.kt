@@ -1,20 +1,33 @@
 fun main() {
+
     fun part1(input: List<String>): Int {
-        return input.size
+
+        var list1 = mutableListOf<Int>()
+        var list2 = mutableListOf<Int>()
+
+
+        input.forEach{it ->
+            var entries = it.split("   ")
+            list1.add(entries[0].toInt())
+            list2.add(entries[1].toInt())
+        }
+
+        list1.sort()
+        list2.sort()
+
+
+        var totalDistance = 0;
+        list1.forEachIndexed{i, it ->
+            totalDistance += Math.abs(list1[i] - list2[i])
+        }
+
+        return totalDistance
     }
 
     fun part2(input: List<String>): Int {
         return input.size
     }
 
-    // Test if implementation meets criteria from the description, like:
-    check(part1(listOf("test_input")) == 1)
-
-    // Or read a large test input from the `src/Day01_test.txt` file:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
-    // Read the input from the `src/Day01.txt` file.
     val input = readInput("Day01")
     part1(input).println()
     part2(input).println()
