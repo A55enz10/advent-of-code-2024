@@ -10,7 +10,7 @@ fun main() {
     }
 
     fun part2(input: List<String>): Int {
-        return part1(input.joinToString().split("do()").map { if (it.contains("don't()"))  it.substring(0, it.indexOf("don't()")) else it })
+        return part1(input.joinToString().split("do()").map { it.split("don't()")[0] })
     }
 
     val input = readInput("Day03")
